@@ -1,4 +1,5 @@
 from sanic import Sanic, response
+from sanic.response import json
 from jinja2 import Environment, PackageLoader, select_autoescape
 import time
 
@@ -26,11 +27,18 @@ async def test(request):
     return response.html(rendered_template)
 
 
+
+@app.route("/recieve-command")
+async def recieve(request):
+    print("Recieved command")
+
+
 def run_server(
         host=settings.SANIC_HOST,
         port=settings.SANIC_PORT,
         debug=settings.DEBUG):
     app.static('/static', settings.STATIC_ROOT)
+    app.static('/node_modules', "./../node_modules")
     app.run(host, port, debug)
 
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Command } from './command';
 import { index_variable } from './constants';
 import { CommandsService } from './commands-service';
+import { LineChartComponent } from "./app.chart.component"
 
 @Component({
   selector: 'app',
@@ -53,6 +54,7 @@ import { CommandsService } from './commands-service';
             </div>
         </div>
         <div class="clearfix"></div>
+        <line-chart></line-chart>
     </div>
   `,
   providers: [CommandsService]

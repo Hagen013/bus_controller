@@ -1,0 +1,6 @@
+# Byte-compiled / optimized / DLL files
+*__pycache__/
+app/__pycache__/
+*.py[cod]
+app/__pycache__/app.cpython-36.pyc
+
