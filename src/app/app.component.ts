@@ -3,16 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import { Command } from './command';
 import { index_variable } from './constants';
 import { CommandsService } from './commands-service';
-import { LineChartComponent } from "./app.chart.component"
+import { LineChartComponent } from "./app.chart.component";
 
 @Component({
   selector: 'app',
   template: `
+   <router-outlet></router-outlet>
     <div class="app-header shadow-3">
         <button>Старт</button>
         <button>Значения переменных</button>
         <button>История комманд</button>
-        <button>Настройки</button>
+        <button (click)="toggleMenu()">Меню</button>
         <button>Стоп</button>
         <button>Очистить</button>
     </div>
@@ -56,10 +57,20 @@ import { LineChartComponent } from "./app.chart.component"
         <div class="clearfix"></div>
         <line-chart></line-chart>
     </div>
+    <div *ngIf="displayMenu" class="offcanvas_menu">
+        <ul>
+            <li>Команды</li>
+            <li>Телеметрия</li>
+            <li>
+                <a routerLink="/dashboard">dashboard</a>
+            </li>
+        </ul>
+    </div>
   `,
   providers: [CommandsService]
 })
 export class AppComponent implements OnInit {
+    displayMenu: boolean;
     commands: Command[];
     current_command: Command;
     index_variables: index_variable[];
@@ -77,6 +88,16 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.getCommands();
         this.getIndexVariables();
+        this.displayMenu = false;
+    }
+    toggleMenu(): void {
+        console.log('Toggled');
+        if (this.displayMenu) {
+            this.displayMenu = false;
+        }
+        else {
+            this.displayMenu = true;
+        }
     }
     processCommand(command: Command): void {
         if (typeof command != 'undefined') {
