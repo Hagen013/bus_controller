@@ -7,118 +7,125 @@
 @import "colors/brown";
 @import "colors/bw";
 
-* {box-sizing: border-box } 
+@import "ionic/ionicons-variables";
 
-button::-moz-focus-inner,
-input::-moz-focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-button::focus-inner,
-input::focus-inner {
-  border: 0;
-  padding: 0;
-}
-
-button {
-	cursor: pointer;
-	border-style: none;
-}
-
-body {
-	background: $black;
-}
-
-
-
-
-h1 {
-	font-size: 70px;
-}
-
-ul {
-	padding: 0px;
-}
-
-li {
-	list-style: none;
-}
+@import "base";
 
 @mixin grey_block {
-	background: rgba(33, 33, 33, 1);
+	padding: 15px;
+	border-radius: 5px;
+	background: rgba(0,0,0,0.85);
 }
 
-.app-header {
+@font-face {
+	font-family: Roboto; /* Имя шрифта */
+	src: url(../fonts/Roboto/Roboto-Regular.ttf); /* Путь к файлу со шрифтом */
+}
+
+@font-face { 
+	font-family: Ionicons; 
+	src: url("../fonts/ionicons.ttf"); 
+	font-weight: normal;
+	font-style: normal; 
+}
+
+.main-menu {
 	position: fixed;
 	top: 0px;
-	z-index: 9000;
-	margin-bottom: 20px;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	button {
-		height: 50px;
-		flex-basis: 25%;
-		cursor: pointer;
-		background: $grey-800;
-		color: $white;
+	left: 0px;
+	width: 200px;
+	height: 100%;
+	background: rgba(0,0,0,0.85);
+	font-size: 18px;
+	ul {
+		padding: 50px 0px 0px 0px;
+	}
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		padding: 10px 0px 10px 20px;
 		transition: 0.2s;
-		border-style: none;
+		color: $white;
+	}
+	li {
 		&:hover {
-			background: $grey-900;
+			a {
+				color: $teal-A100;
+				background: $grey-900;
+			}
 		}
 	}
 }
 
-.manager-content {
-	position: relative;
-	margin: 60px 0px 60px 0px;
-	color: $blue-grey-50;
+
+.nav-top {
+	position: fixed;
+	top: 0px;
+	left: 200px;
+	height: 50px;
+	width: 100%;
+	z-index: 900;
+	background: rgba(0,0,0,0.85);
 }
 
-.application-container {
-	width: 1200px;
-	margin: 0 auto;
+.nav-top__item {
+	height: 100%;
+	width: 200px;
+	padding: 14px 0px 14px 0px;
+	font-size: 18px;
+	font-weight: 700;
+	text-align: center;
+	cursor: pointer;
+	transition: 0.2s;
+	&:hover {
+		color: $teal-A100;
+		background: $grey-800;
+	}
 }
 
-.right-content, .left-content {
+.float-item {
 	float: left;
 }
 
-.app-monitor {
-	border-radius: 3px;
-	padding: 0px 10px 0px 10px;
-	min-height: 200px;
-	@include grey_block;
+.main-content {
+	position: relative;
+	margin-left: 200px;
+	margin-top: 50px;
+	padding: 15px 15px 15px 15px;
 }
 
-.app-monitor__caption {
-	padding: 10px 20px 10px 20px;
-	text-align: center;
+.start-button__caption:after, .stop-button__caption:after {
+	font-family: 'Ionicons';
+	margin-left: 10px;
+	color: $teal-100;
+}
+
+.start-button__caption:after {
+	content: $ionicon-var-ios-play;
+}
+
+.stop-button__caption:after {
+	content: $ionicon-var-stop;
+}
+
+.data-table {
+	width: 100%;
+	padding: 15px;
+	border-radius: 5px;
+	background: rgba(0,0,0,0.8);
+	width: 100%;
+	margin-bottom: 10px;
+	padding: 10px 10px 10px 20px;
 	border-radius: 3px;
-	border-bottom: 2px solid $white;
-	@include grey_block;
 	color: $white;
-}
-
-.left-content {
-	padding: 0px 10px 0px 10px;
-	width: 70%;
-	table {
-		width: 100%;
-		margin-bottom: 10px;
-		padding: 10px 10px 10px 20px;
-		border-radius: 3px;
-		color: $white;
-		@include grey_block;
-	}
 	th {
 		border-bottom: 2px solid $white;
+		margin-bottom: 30px;
 	}
 	td {
 		border-bottom: 1px dotted $grey-700;
-		padding: 3px 0px 3px 0px;
+		padding: 5px 0px 5px 0px;
 	}
 }
 
@@ -141,26 +148,63 @@ li {
 	text-align: center;
 }
 
+
+.left-content {
+	float: left;
+	width: 60%;
+}
+
 .right-content {
-	padding-right: 10px;
-	width: 30%;
+	float: right;
+	width: 35%;
+	margin-right: 40px;
+}
+
+.app-monitor {
+	height: 200px;
+	margin-top: 15px;
+	padding: 15px;
+	@include grey_block();
+}
+
+.app-monitor__caption {
+	padding: 18px 20px 10px 0px;
+	border-bottom: 2px solid $white;
+	color: $white;
+}
+
+.app-monitor__list {
+	font-size: 12px;
 	ul {
-		height: 550px;
-		overflow: auto;
-		margin: 0px;
-		padding: 10px 10px 0px 10px;
-		border-radius: 3px;
-		@include grey_block;
+		height: 100px;
+		overflow: hidden;
+		overflow-y: scroll;
 	}
 	li {
-		font-size: 12px;
+		padding: 3px 10px 3px 0px;
+	}
+}
+
+.right-content__commands {
+	font-size: 12px;
+	@include grey_block();
+}
+
+.commands-list {
+	height: 548px;
+	overflow: hidden;
+	overflow-y: scroll;
+}
+
+.right-content {
+	li {
 		padding: 3px 0px 3px 0px;
 		cursor: pointer;
 		border-bottom: 1px dotted $grey-700;
 		transition: 0.2s;
 		&:hover {
 			background: $grey-800;
-			color: $orange-100;
+			color: $teal-100;
 		}
 	}
 	.command-button-wrapper {
@@ -174,74 +218,77 @@ li {
 		transition: 0.2s;
 		color: $white;
 		border-radius: 3px;
-		background: $orange-400;
+		background: $teal-400;
 		height: 50px;
 		&:hover {
-			background: $orange-700;
+			background: $teal-700;
 			box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 		}
 	}
 }
 
 .current-command {
-	border-top: 2px solid $white;
+	border: 2px solid $white;
 	@include grey_block;
 	height: 50px;
 	font-size: 12px;
 	padding: 16px 10px 10px 10px;
 }
 
-.clearfix {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+.noCommand {
+	color: $grey-500;
 }
 
-
-.shadow-1 {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+.status {
+	float: right;
 }
 
-.shadow-1:hover {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+.success {
+	color: $green-200;
 }
 
-.shadow-2 {
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.app-monitor__message-type {
+	color: $teal-100;
 }
 
-.shadow-3 {
-  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-}
-
-.shadow-4 {
-  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
-}
-
-.shadow-5 {
-  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
-}
-
-.offcanvas_menu {
-	position: fixed;
-	height: 100%;
+.nav-top__status {
 	width: 200px;
-	left: 0px;
-	top: 0px;
-	z-index: 10000;
-	color: $white;
-	background: $black;
-	ul, li {
-		width: 100%;
+	padding: 13px 0px 13px 0px;
+	text-align: center;
+	font-weight: 700;
+	color: red;
+	border: 3px solid red;
+}
+
+.main-menu__telemetry {
+	&:after {
+		font-family: 'Ionicons';
+		content: $ionicon-var-arrow-graph-up-right;
+		float: left;
+		margin-right: 10px;
+		margin-top: -3px;
+		font-size: 24px;
 	}
-	ul {
-		padding-top: 20px;
+}
+
+.main-menu__commands {
+	&:before {
+		font-family: 'Ionicons';
+		content: $ionicon-var-share;
+		float: left;
+		margin-right: 10px;
+		margin-top: -3px;
+		font-size: 24px;
 	}
-	li {
-		padding-left: 20px;
-		line-height: 40px;
+}
+
+.main-menu__settings {
+	&:after {
+		font-family: 'Ionicons';
+		content: $ionicon-var-gear-a;
+		float: left;
+		margin-right: 10px;
+		margin-top: -3px;
+		font-size: 24px;
 	}
 }

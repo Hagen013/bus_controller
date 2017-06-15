@@ -2,36 +2,32 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
+import { FormsModule }   from '@angular/forms';
 
+
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
 
 import { ChartsModule } from 'ng2-charts';
-import { LineChartComponent } from './app.chart.component';
 
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
+import { ChartsComponent } from './charts.component';
 import { DashboardComponent } from './dashboard.component';
+
 
 @NgModule({
   imports:      [
     BrowserModule,
     HttpModule,
     ChartsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      }
-    ])
+    FormsModule,
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    LineChartComponent,
-    DashboardComponent
+    DashboardComponent,
+    ChartsComponent,
   ],
   bootstrap:    [ AppComponent ]
 })

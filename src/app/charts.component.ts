@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
- 
+import 'rxjs/add/operator/switchMap';
+
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
+import { Location }                 from '@angular/common';
+
+
 @Component({
-  selector: 'line-chart',
+  selector: 'charts',
   template: `
 <div class="row">
   <div class="col-md-6">
@@ -28,8 +33,7 @@ import { Component } from '@angular/core';
 </div>
   `
 })
-
-export class LineChartComponent {
+export class ChartsComponent {
 
   public lineChartData:Array<any> = [
     {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
@@ -38,7 +42,7 @@ export class LineChartComponent {
   ];
 
   public lineChartLabels:Array<any> = ['1', '2', '3', '4', '5', '6', '7'];
-  
+
   public lineChartOptions:any = {
     responsive: true
   };

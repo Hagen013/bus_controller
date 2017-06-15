@@ -27,10 +27,28 @@ async def test(request):
     return response.html(rendered_template)
 
 
+@app.route('/api/heroes')
+async def test(request):
+    print('recieved')
+    HEROES = [
+      {'id': 11, 'name': 'Mr. Nice'},
+      {'id': 12, 'name': 'Narco'},
+      {'id': 13, 'name': 'Bombasto'},
+      {'id': 14, 'name': 'Celeritas'},
+      {'id': 15, 'name': 'Magneta'},
+      {'id': 16, 'name': 'RubberMan'},
+      {'id': 17, 'name': 'Dynama'},
+      {'id': 18, 'name': 'Dr IQ'},
+      {'id': 19, 'name': 'Magma'},
+      {'id': 20, 'name': 'Tornado'}
+    ]
+    return json(HEROES)
+
+
 
 @app.route("/recieve-command")
 async def recieve(request):
-    print("Recieved command")
+    print("\n\n\n\n\n\n\nRecieved command\n\n\n\n\n")
 
 
 def run_server(
@@ -50,5 +68,4 @@ if __name__ == "__main__":
     else:
         run_server()
     app.run(host="0.0.0.0", port=8000, debug=True)
-
 
